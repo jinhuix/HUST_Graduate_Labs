@@ -74,17 +74,24 @@ class sim_cache:
 
     def read(self,target_file):
         #read file from file system
-        
-
         ####### Begin #######
         
         #检查缓存中是否已缓存文件
-
-        #向server确认version是否一致
-
-        #选择从cache/server中读取文件
+        if self._search_cache(target_file):
+            cache_file = self._cache_file[target_file].get_data()
+            
+            #向server确认version是否一致
+            server_version = self._target_server.get_version(target_file)
+            if cache_file[2] == server_version:
+                #选择从cache/server中读取文件
+                return cache_file[1]
 
         #缓存从server中读取的文件
+        server_file = self._target_server.read(target_file)
+        if server_file:
+            # 将文件缓存到本地
+            self._write_cache(target_file, server_file[1], server_file[2])
+            return server_file[1]
         
         ######## End ########
 
@@ -97,11 +104,14 @@ class sim_cache:
         ####### Begin #######
 
         #生成新version
+        new_version = self._get_new_version()
 
         #向cache中写入数据并更新version
+        self._write_cache(target_file, data, new_version)
 
         #向server中写入数据并更新version
+        self._target_server.write(target_file, data, new_version)
 
         ######## End ########
 
-        return 
+        return
