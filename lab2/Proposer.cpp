@@ -45,24 +45,20 @@ PROPOSAL& Proposer::GetProposal()
 
 bool Proposer::Proposed(bool ok, PROPOSAL &lastAcceptValue)
 {
-	if ( m_proposeFinished ) return true;//可能是一阶段迟到的回应，直接忽略消息
+	if ( m_proposeFinished ) return true;	// 可能是一阶段迟到的回应，直接忽略消息
 
 	if ( !ok ) 
 	{
 		m_refuseCount++;
 		//已有半数拒绝，不需要等待其它acceptor投票了，重新开始Propose阶段
 		//使用StartPropose(m_value)重置状态
-	
-        //请完善下面逻辑
  		/**********Begin**********/
-
+        if (m_refuseCount > m_acceptorCount / 2) {
+			m_value.serialNum = m_value.serialNum + m_proposerCount;
+			StartPropose(m_value);
+			return false;
+		}
 	    /**********End**********/
-
-
-
-
-
-	
 
 		//拒绝数不到一半
 		return true;
@@ -76,11 +72,11 @@ bool Proposer::Proposed(bool ok, PROPOSAL &lastAcceptValue)
 	//如果已经有提议被接受，修改成已被接受的提议
 	//请完善下面逻辑
  	/**********Begin**********/
-
+	if(lastAcceptValue.serialNum > m_maxAcceptedSerialNum) {
+		m_maxAcceptedSerialNum = lastAcceptValue.serialNum;
+		m_value.value = lastAcceptValue.value;
+	}
 	/**********End**********/	
-
-
-
 
 
 	//如果自己的提议被接受
@@ -99,7 +95,7 @@ bool Proposer::StartAccept()
 
 bool Proposer::Accepted(bool ok)
 {
-	if ( !m_proposeFinished ) return true;//可能是上次第二阶段迟到的回应，直接忽略消息
+	if ( !m_proposeFinished ) return true;	// 可能是上次第二阶段迟到的回应，直接忽略消息
 
 	if ( !ok ) 
 	{
@@ -108,17 +104,13 @@ bool Proposer::Accepted(bool ok)
 		//使用StartPropose(m_value)重置状态
 	    //请完善下面逻辑
         /**********Begin**********/
-
-	    
-        
+        if (m_refuseCount > m_acceptorCount / 2) {
+			m_value.serialNum = m_value.serialNum + m_proposerCount;
+			StartPropose(m_value);
+			return false;
+		}
         /**********End**********/
  		
-
-
-
-
-
-	
 		return true;
 	}
 
