@@ -1,0 +1,16 @@
+com/xjh/jobs/Predict.class
+com/xjh/jobs/WordCount$TermStatisticReducer.class
+com/xjh/jobs/Predict$PreditionReducer.class
+com/xjh/util/Predition.class
+com/xjh/input/TermStatisticInputFormat.class
+com/xjh/util/Statistic.class
+com/xjh/input/ClassNameRecordReader.class
+com/xjh/jobs/ClassCount$ClassFileSumMapper.class
+com/xjh/util/Constant.class
+com/xjh/jobs/WordCount.class
+com/xjh/jobs/Predict$PreditionMapper.class
+com/xjh/input/TermStatisticRecordReader.class
+com/xjh/jobs/ClassCount$ClassFileSumReducer.class
+com/xjh/jobs/ClassCount.class
+com/xjh/input/ClassNameInputFormat.class
+com/xjh/jobs/WordCount$TermStatisticMapper.class

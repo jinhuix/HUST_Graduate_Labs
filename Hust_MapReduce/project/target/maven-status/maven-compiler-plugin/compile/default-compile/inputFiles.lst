@@ -1,0 +1,10 @@
+/home/xjh/mapreduce/project/src/main/java/com/xjh/util/Statistic.java
+/home/xjh/mapreduce/project/src/main/java/com/xjh/input/TermStatisticInputFormat.java
+/home/xjh/mapreduce/project/src/main/java/com/xjh/jobs/ClassCount.java
+/home/xjh/mapreduce/project/src/main/java/com/xjh/input/TermStatisticRecordReader.java
+/home/xjh/mapreduce/project/src/main/java/com/xjh/jobs/Predict.java
+/home/xjh/mapreduce/project/src/main/java/com/xjh/util/Predition.java
+/home/xjh/mapreduce/project/src/main/java/com/xjh/input/ClassNameInputFormat.java
+/home/xjh/mapreduce/project/src/main/java/com/xjh/input/ClassNameRecordReader.java
+/home/xjh/mapreduce/project/src/main/java/com/xjh/util/Constant.java
+/home/xjh/mapreduce/project/src/main/java/com/xjh/jobs/WordCount.java
